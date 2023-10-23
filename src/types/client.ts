@@ -1,11 +1,10 @@
 export type Reservation = {
   id: number;
   providerId: number;
-  date: number;
   startTime: number;
   endTime: number;
   createdAt: number;
-  confirmedAt: number;
+  confirmedAt?: number;
 };
 
 export type Client = {

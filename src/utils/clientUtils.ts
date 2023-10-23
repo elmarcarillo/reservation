@@ -1,5 +1,19 @@
+import { RESERVATION_LENGTH } from "../consts";
 import { Client, Reservation } from "../types/client";
 import { getNow } from "./date";
+
+export const createReservation = (
+  id: number,
+  providerId: number,
+  startTime: number,
+  endTime?: number
+): Reservation => ({
+  id,
+  providerId,
+  startTime,
+  endTime: endTime ?? new Date(startTime + RESERVATION_LENGTH).getTime(),
+  createdAt: getNow(),
+});
 
 export const createClient = (id: number, reservation: Reservation): Client => ({
   id,

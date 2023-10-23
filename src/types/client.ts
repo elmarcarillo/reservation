@@ -1,4 +1,5 @@
 export type Reservation = {
+  id: number;
   providerId: number;
   date: number;
   startTime: number;
@@ -9,4 +10,5 @@ export type Reservation = {
 
 export type Client = {
   id: number;
+  reservation: Reservation;
 };

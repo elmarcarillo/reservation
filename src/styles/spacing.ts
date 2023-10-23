@@ -1,5 +1,8 @@
 export const spacing = {
-  half: "4px",
-  single: "8px",
-  double: "16px",
+  half: "8px",
+  single: "16px",
+  singleHalf: "24px",
+  double: "32px",
+  doubleHalf: "40px",
+  triple: "48px",
 };

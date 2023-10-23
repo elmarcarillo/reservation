@@ -8,8 +8,28 @@ export const mockProviders = () => {
   const schedule2 = createSchedule(
     2,
     addDay(BASE_DATE),
-    addHour(addDay(BASE_DATE), 12)
+    addHour(addDay(BASE_DATE), 6)
   );
 
-  return [createProvider(1, [schedule1, schedule2])];
+  const schedule3 = createSchedule(
+    3,
+    addHour(addDay(BASE_DATE), 8),
+    addHour(addDay(BASE_DATE), 11)
+  );
+
+  const schedule4 = createSchedule(
+    4,
+    addHour(addDay(BASE_DATE, 2), 4),
+    addHour(addDay(BASE_DATE, 2), 6)
+  );
+
+  const schedule5 = createSchedule(
+    5,
+    addHour(addDay(BASE_DATE, 2), 9),
+    addHour(addDay(BASE_DATE, 2), 10)
+  );
+
+  return [
+    createProvider(1, [schedule1, schedule2, schedule3, schedule4, schedule5]),
+  ];
 };

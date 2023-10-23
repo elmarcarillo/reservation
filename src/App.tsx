@@ -3,8 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { mockProviders } from "./data/mockProviders";
 import { mockClient } from "./data/mockClient";
-import { getDateString } from "./utils/date";
-import { ProviderSchedule } from "./components/ProviderSchedule";
+import { ProviderSchedules } from "./components/ProviderSchedules";
 
 function App() {
   const [providers, setProviders] = useState(mockProviders());
@@ -12,7 +11,7 @@ function App() {
 
   return (
     <div className="App">
-      <ProviderSchedule providers={providers} />
+      <ProviderSchedules schedules={providers[0].schedules} />
     </div>
   );
 }

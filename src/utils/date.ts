@@ -5,16 +5,35 @@ export const DAY_IN_MILLISECONDS = HOUR_IN_MILLISECONDS * 24;
 
 export const getNow = (): number => new Date().setSeconds(0); // Omit Seconds
 
+export const getBeginningOfDay = (date?: number): number => {
+  const newDate = date ? new Date(date) : new Date();
+  return newDate.setHours(0, 0, 0, 0);
+};
+
 export const getDate = (date: number): Date => new Date(date);
 
 export const getDateValue = (date: number): number => getDate(date).getTime();
 
-export const getDateString = (date: number): string =>
+export const getFullDateString = (date: number): string =>
   getDate(date).toLocaleDateString("en-us", {
     weekday: "long",
     year: "numeric",
     month: "short",
     day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+
+export const getDateString = (date: number): string =>
+  getDate(date).toLocaleDateString("en-us", {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+
+export const getTimeString = (date: number): string =>
+  getDate(date).toLocaleTimeString("en-us", {
     hour: "numeric",
     minute: "numeric",
   });
@@ -27,3 +46,24 @@ export const addHour = (date: number, numberOfHours = 1): number =>
 
 export const addMinute = (date: number, numberOfMinutes = 1): number =>
   date + MINUTE_IN_MILLISECONDS * numberOfMinutes;
+
+// Omitting the day, determine if given time is within range.
+export const dateIsWithinRange = (
+  startDate: number,
+  endDate: number,
+  startTime: number,
+  endTime: number
+) => {
+  const startDateOmitted =
+    new Date(startDate).getHours() * 60 + new Date(startDate).getMinutes();
+  const endDateOmitted =
+    new Date(endDate).getHours() * 60 + new Date(endDate).getMinutes();
+
+  const startTimeOmitted =
+    new Date(startTime).getHours() * 60 + new Date(startTime).getMinutes();
+  const endTimeOmitted =
+    new Date(endTime).getHours() * 60 + new Date(endTime).getMinutes();
+  return (
+    startDateOmitted >= startTimeOmitted && endDateOmitted <= endTimeOmitted
+  );
+};

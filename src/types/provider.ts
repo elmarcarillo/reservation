@@ -6,5 +6,5 @@ export type Schedule = {
 
 export type Provider = {
   id: number;
-  schedule: Schedule[];
+  schedules: Schedule[];
 };

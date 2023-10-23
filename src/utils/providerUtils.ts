@@ -10,15 +10,18 @@ export const createSchedule = (
   endTime,
 });
 
-export const createProvider = (id: number, schedule: Schedule[]): Provider => ({
+export const createProvider = (
+  id: number,
+  schedules: Schedule[]
+): Provider => ({
   id,
-  schedule,
+  schedules,
 });
 
-export const updateProviderSchedule = ({
+export const updateProviderSchedules = ({
   provider,
-  schedule,
+  schedules,
 }: {
   provider: Provider;
-  schedule: Schedule[];
-}): Provider => ({ ...provider, schedule });
+  schedules: Schedule[];
+}): Provider => ({ ...provider, schedules });

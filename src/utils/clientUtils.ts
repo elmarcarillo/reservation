@@ -1,30 +1,10 @@
-import { Provider, Schedule } from "../types/provider";
 import { Client, Reservation } from "../types/client";
 import { getNow } from "./date";
 
-export const createProvider = ({
-  id,
-  schedule,
-}: {
-  id: number;
-  schedule: Schedule[];
-}): Provider => ({ id, schedule });
-
-export const updateProviderSchedule = ({
-  provider,
-  schedule,
-}: {
-  provider: Provider;
-  schedule: Schedule[];
-}): Provider => ({ ...provider, schedule });
-
-export const createClient = ({
+export const createClient = (id: number, reservation: Reservation): Client => ({
   id,
   reservation,
-}: {
-  id: number;
-  reservation: Reservation;
-}): Client => ({ id, reservation });
+});
 
 export const updateClientReservation = ({
   client,

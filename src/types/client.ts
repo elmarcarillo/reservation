@@ -1,5 +1,5 @@
 export type Reservation = {
-  id: number;
+  id?: number;
   providerId: number;
   startTime: number;
   endTime: number;

@@ -9,9 +9,13 @@ import {
 } from "../../utils/date";
 import { Container, Content, TimeSlot } from "./styles";
 import { ScheduleByDayProps } from "./types";
-
 export const ScheduleByDay: React.FC<ScheduleByDayProps> = (props) => {
-  const { className, schedule = [BLANK_SCHEDULE], reservations = [] } = props;
+  const {
+    className,
+    onClickTimeSlot = () => {},
+    schedule = [BLANK_SCHEDULE],
+    reservations = [],
+  } = props;
 
   const date = getBeginningOfDay();
   const slots = Array.from({ length: MAX_SLOTS_PER_DAY }).map((_, i) => {
@@ -31,7 +35,15 @@ export const ScheduleByDay: React.FC<ScheduleByDayProps> = (props) => {
     );
 
     return (
-      <TimeSlot key={i} $isAvailable={isAvailable}>
+      <TimeSlot
+        key={i}
+        $isAvailable={isAvailable}
+        onClick={() => {
+          if (isAvailable) {
+            onClickTimeSlot(getTimeOmittingDate(dateToShow), reservation);
+          }
+        }}
+      >
         <Content $hasReservation={!!reservation}>
           {getTimeString(dateToShow)}
         </Content>

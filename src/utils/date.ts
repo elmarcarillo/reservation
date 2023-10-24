@@ -48,7 +48,7 @@ export const addMinute = (date: number, numberOfMinutes = 1): number =>
   date + MINUTE_IN_MILLISECONDS * numberOfMinutes;
 
 export const getTimeOmittingDate = (date: number) =>
-  new Date(date).getHours() * 60 + new Date(date).getMinutes();
+  (new Date(date).getHours() * 60 + new Date(date).getMinutes()) * 60 * 1000;
 
 // Omitting the day, determine if given time is within range.
 export const dateIsWithinRange = (

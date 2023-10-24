@@ -15,7 +15,7 @@ export const TimeSlot = styled.div<{ $isAvailable?: boolean }>`
         color: ${colors.gray};
       `;
     }
-    return ``;
+    return `cursor: pointer;`;
   }};
 `;
 
@@ -28,6 +28,7 @@ export const Content = styled.div<{ $hasReservation?: boolean }>`
       return `
         border: 1px solid ${colors.gray};
         background: ${colors.green};
+        cursor: pointer;
       `;
     }
     return `

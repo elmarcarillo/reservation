@@ -2,22 +2,32 @@ import { reservationsByDate } from "../../utils/clientUtils";
 import { getBeginningOfDay, getDateString } from "../../utils/date";
 import { schedulesByDate } from "../../utils/providerUtils";
 import { ScheduleByDay } from "../ScheduleByDay";
-import { Container, ScheduleContainer } from "./styles";
+import { Container, Date, ScheduleContainer } from "./styles";
 import { SchedulesProps } from "./types";
 
 export const Schedules: React.FC<SchedulesProps> = (props) => {
-  const { schedules, reservations = [], onClickTimeSlot = () => {} } = props;
+  const {
+    currentSelectedReservation,
+    schedules,
+    allReservations = [],
+    clientReservations = [],
+    onClickTimeSlot = () => {},
+  } = props;
   const schedulesByDay = schedulesByDate(schedules);
-  const reservationsByDay = reservationsByDate(reservations);
+  const allReservationsByDay = reservationsByDate(allReservations);
+  const clientReservationsByDay = reservationsByDate(clientReservations);
 
   return (
     <Container>
       {Object.keys(schedulesByDay).map((date) => (
         <ScheduleContainer key={date}>
-          {getDateString(parseInt(date, 10))}
+          <Date>{getDateString(parseInt(date, 10))}</Date>
           <ScheduleByDay
+            currentDate={parseInt(date, 10)}
+            currentSelectedReservation={currentSelectedReservation}
             schedule={schedulesByDay[date]}
-            reservations={reservationsByDay[date] ?? []}
+            allReservations={allReservationsByDay[date] ?? []}
+            clientReservations={clientReservationsByDay[date] ?? []}
             onClickTimeSlot={(time, reservation) =>
               onClickTimeSlot(
                 getBeginningOfDay(parseInt(date, 10)) + time,

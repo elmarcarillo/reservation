@@ -1,1 +1,2 @@
-export * from "./DetailsBar";
+export * from "./ClientDetailsBar";
+export * from "./ProviderDetailsBar";

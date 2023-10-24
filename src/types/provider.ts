@@ -7,4 +7,5 @@ export type Schedule = {
 export type Provider = {
   id: number;
   schedules: Schedule[];
+  color?: string;
 };

@@ -15,10 +15,12 @@ export const createSchedule = (
 
 export const createProvider = (
   id: number,
-  schedules: Schedule[]
+  schedules: Schedule[],
+  color?: string
 ): Provider => ({
   id,
   schedules,
+  color,
 });
 
 export const updateProviderSchedules = ({
@@ -29,6 +31,11 @@ export const updateProviderSchedules = ({
   schedules: Schedule[];
 }): Provider => ({ ...provider, schedules });
 
+/**
+ * Sorts schedules by date.
+ * @param schedules: The schedules to sort.
+ * @returns Object containing list of schedules (value) by date (key).
+ */
 export const schedulesByDate = (schedules: Schedule[]) => {
   const sortedSchedules = schedules.reduce((acc, cur) => {
     const currentDay = getBeginningOfDay(cur.startTime);

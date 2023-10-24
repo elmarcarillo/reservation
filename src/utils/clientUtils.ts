@@ -26,9 +26,11 @@ export const createClient = (
   reservations,
 });
 
-export const getAllReservations = (clients: Client[]) =>
-  clients.flatMap((client) => client.reservations);
-
+/**
+ * Sorts reservations by date.
+ * @param reservations: The reservations to sort.
+ * @returns Object containing list of reservations (value) by date (key).
+ */
 export const reservationsByDate = (reservations: Reservation[]) => {
   const sortedReservations = reservations.reduce((acc, cur) => {
     const currentDay = getBeginningOfDay(cur.startTime);

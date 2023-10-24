@@ -3,6 +3,8 @@ import { Reservation } from "../../types/client";
 
 export type SchedulesProps = {
   schedules: Schedule[];
-  reservations?: Reservation[];
+  clientReservations?: Reservation[];
+  allReservations?: Reservation[];
   onClickTimeSlot?: (date: number, reservation?: Reservation) => void;
+  currentSelectedReservation?: Reservation;
 };

@@ -47,6 +47,9 @@ export const addHour = (date: number, numberOfHours = 1): number =>
 export const addMinute = (date: number, numberOfMinutes = 1): number =>
   date + MINUTE_IN_MILLISECONDS * numberOfMinutes;
 
+export const getTimeOmittingDate = (date: number) =>
+  new Date(date).getHours() * 60 + new Date(date).getMinutes();
+
 // Omitting the day, determine if given time is within range.
 export const dateIsWithinRange = (
   startDate: number,
@@ -54,15 +57,11 @@ export const dateIsWithinRange = (
   startTime: number,
   endTime: number
 ) => {
-  const startDateOmitted =
-    new Date(startDate).getHours() * 60 + new Date(startDate).getMinutes();
-  const endDateOmitted =
-    new Date(endDate).getHours() * 60 + new Date(endDate).getMinutes();
+  const startDateOmitted = getTimeOmittingDate(startDate);
+  const endDateOmitted = getTimeOmittingDate(endDate);
 
-  const startTimeOmitted =
-    new Date(startTime).getHours() * 60 + new Date(startTime).getMinutes();
-  const endTimeOmitted =
-    new Date(endTime).getHours() * 60 + new Date(endTime).getMinutes();
+  const startTimeOmitted = getTimeOmittingDate(startTime);
+  const endTimeOmitted = getTimeOmittingDate(endTime);
   return (
     startDateOmitted >= startTimeOmitted && endDateOmitted <= endTimeOmitted
   );

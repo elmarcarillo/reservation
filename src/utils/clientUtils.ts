@@ -1,6 +1,9 @@
-import { RESERVATION_LENGTH } from "../consts";
+import { RESERVATION_CUTOFF, RESERVATION_LENGTH } from "../consts";
 import { Client, Reservation } from "../types/client";
-import { getNow } from "./date";
+import { Schedule } from "../types/provider";
+import { getBeginningOfDay, getNow } from "./date";
+
+export type ReservationsByDay = { [key: string]: Reservation[] };
 
 export const createReservation = (
   id: number,
@@ -15,29 +18,37 @@ export const createReservation = (
   createdAt: getNow(),
 });
 
-export const createClient = (id: number, reservation: Reservation): Client => ({
+export const createClient = (
+  id: number,
+  reservations: Reservation[]
+): Client => ({
   id,
-  reservation,
+  reservations,
 });
 
-export const updateClientReservation = ({
-  client,
-  reservation,
-}: {
-  client: Client;
-  reservation: Reservation;
-}): Client => ({ ...client, reservation });
+export const getAllReservations = (clients: Client[]) =>
+  clients.flatMap((client) => client.reservations);
 
-export const confirmClientReservation = (
-  client: Client,
-  overrideConfirmDate?: number
-): Client => {
-  const { reservation, ...clientInfo } = client;
-  return {
-    ...clientInfo,
-    reservation: {
-      ...reservation,
-      confirmedAt: overrideConfirmDate ?? getNow(),
-    },
-  };
+export const reservationsByDate = (reservations: Reservation[]) => {
+  const sortedReservations = reservations.reduce((acc, cur) => {
+    const currentDay = getBeginningOfDay(cur.startTime);
+    if (!acc[currentDay]) {
+      acc[currentDay] = [cur];
+    } else {
+      acc[currentDay] = [...acc[currentDay], cur];
+    }
+    return acc;
+  }, {} as ReservationsByDay);
+  return sortedReservations;
+};
+
+export const canReserve = (
+  reservation: Reservation,
+  schedule: Schedule,
+  cutoff = RESERVATION_CUTOFF
+) => {
+  const { startTime: reservationStartTime } = reservation;
+  const { startTime } = schedule;
+
+  return startTime - cutoff <= reservationStartTime;
 };

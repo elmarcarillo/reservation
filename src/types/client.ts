@@ -9,5 +9,5 @@ export type Reservation = {
 
 export type Client = {
   id: number;
-  reservation: Reservation;
+  reservations: Reservation[];
 };

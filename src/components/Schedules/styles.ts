@@ -5,3 +5,9 @@ export const Container = styled.div`
   display: flex;
   gap: ${spacing.half};
 `;
+
+export const ScheduleContainer = styled.div`
+  display: flex;
+  gap: ${spacing.single};
+  flex-direction: column;
+`;

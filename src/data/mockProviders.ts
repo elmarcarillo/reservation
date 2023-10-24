@@ -2,6 +2,12 @@ import { addDay, addHour } from "../utils/date";
 import { createProvider, createSchedule } from "../utils/providerUtils";
 import { BASE_DATE } from "./consts";
 
+export const BLANK_SCHEDULE = createSchedule(
+  0,
+  new Date().setHours(0, 0, 0, 0),
+  new Date().setHours(23, 59, 0, 0)
+);
+
 export const mockProviders = () => {
   const schedule1 = createSchedule(1, BASE_DATE, addHour(BASE_DATE, 12));
 

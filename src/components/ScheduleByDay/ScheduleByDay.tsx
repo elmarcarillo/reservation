@@ -41,10 +41,12 @@ export const ScheduleByDay: React.FC<ScheduleByDayProps> = (props) => {
         endTime
       )
     );
+    // Reservations of current client.
     const reservation = clientReservations.find(
       (res) =>
         getTimeOmittingDate(res.startTime) === getTimeOmittingDate(dateToShow)
     );
+    // All other reservations. Show as unavailble on time slot.
     const otherReservation = allReservations.find(
       (res) =>
         getTimeOmittingDate(res.startTime) === getTimeOmittingDate(dateToShow)

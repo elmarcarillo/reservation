@@ -5,6 +5,14 @@ import { getBeginningOfDay, getNow } from "./date";
 
 export type ReservationsByDay = { [key: string]: Reservation[] };
 
+/**
+ * Helper function to create reservation.
+ * @param id
+ * @param providerId
+ * @param startTime
+ * @param endTime
+ * @returns The newly created reservation.
+ */
 export const createReservation = (
   id: number,
   providerId: number,
@@ -18,6 +26,12 @@ export const createReservation = (
   createdAt: getNow(),
 });
 
+/**
+ * Helper function to create a client.
+ * @param id
+ * @param reservations
+ * @returns The newly created client.
+ */
 export const createClient = (
   id: number,
   reservations: Reservation[]
@@ -42,15 +56,4 @@ export const reservationsByDate = (reservations: Reservation[]) => {
     return acc;
   }, {} as ReservationsByDay);
   return sortedReservations;
-};
-
-export const canReserve = (
-  reservation: Reservation,
-  schedule: Schedule,
-  cutoff = RESERVATION_CUTOFF
-) => {
-  const { startTime: reservationStartTime } = reservation;
-  const { startTime } = schedule;
-
-  return startTime - cutoff <= reservationStartTime;
 };

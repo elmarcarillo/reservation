@@ -6,7 +6,7 @@ import { addHour, getBeginningOfDay, getNow } from "./utils/date";
 import { NavBarView } from "./components/NavBar";
 import { Provider } from "./types/provider";
 import { createReservation } from "./utils/clientUtils";
-import { createSchedule } from "./utils/providerUtils";
+import { addSchedule, createSchedule } from "./utils/providerUtils";
 
 export const useAppState = () => {
   const [providers, setProviders] = useState(mockProviders());
@@ -42,18 +42,14 @@ export const useAppState = () => {
     endDate: number,
     provider: Provider
   ) => {
-    const newProvider = {
-      ...provider,
-      schedules: [
-        ...provider.schedules,
-        createSchedule(allSchedules.length, startDate, endDate),
-      ],
-    };
+    const newProvider = addSchedule(
+      provider,
+      createSchedule(allSchedules.length, startDate, endDate)
+    );
     const newProviders = [
       ...providers.filter((pro) => pro.id !== provider.id),
       newProvider,
     ];
-    console.log(newProviders);
     setProviders(newProviders);
     setCurrentProvider(newProvider);
   };

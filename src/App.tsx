@@ -3,7 +3,7 @@ import "./App.css";
 import { BLANK_SCHEDULES } from "./data/mockProviders";
 import { Schedules } from "./components/Schedules";
 import { ClientDetailsBar, ProviderDetailsBar } from "./components/DetailsBar";
-import { NavBar, NavBarView } from "./components/NavBar";
+import { NavBar } from "./components/NavBar";
 import { useAppState } from "./useAppState";
 
 function App() {

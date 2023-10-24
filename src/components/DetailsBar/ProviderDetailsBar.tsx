@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { MAX_SLOTS_PER_DAY, RESERVATION_LENGTH_IN_MINUTES } from "../../consts";
 import {
   addDay,
@@ -6,9 +5,7 @@ import {
   getDateString,
   getBeginningOfDay,
   getTimeString,
-  getNow,
   getTimeOmittingDate,
-  dateIsWithinRange,
   addHour,
 } from "../../utils/date";
 import {

@@ -49,6 +49,7 @@ export const ClientDetailsBar: React.FC<ClientDetailsBarProps> = (props) => {
       )
     : [];
 
+  // Determine if a reservation can be created: Within reservation cutoff, is within a schedule, and not conflicting with other reservations.
   const canCreate =
     selectedProvider &&
     currentSchedules?.length &&

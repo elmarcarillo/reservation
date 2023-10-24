@@ -40,7 +40,9 @@ Henry has two kinds of users, **providers** and **clients**. Providers have a sc
 		- Click on reservation and confirm button appears at top.
 		- Confirmed reservation apear in bold.
 	- NOT BUILT
-		- Expired Reservations after 30 min.	
+		- Expired Reservations after 30 min.
 - Provider View
 	- Ability to add schedules
 	- Toggle between different providers (at bottom nav) 
+- App State
+  - Mock data generated offset by current date.

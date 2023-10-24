@@ -3,6 +3,13 @@ import { getBeginningOfDay } from "./date";
 
 export type SchedulesByDay = { [key: string]: Schedule[] };
 
+/**
+ * Helper function to create schedule.
+ * @param id
+ * @param startTime
+ * @param endTime
+ * @returns The newly created schedule.
+ */
 export const createSchedule = (
   id: number,
   startTime: number,
@@ -13,6 +20,13 @@ export const createSchedule = (
   endTime,
 });
 
+/**
+ * Helper function to create provider.
+ * @param id
+ * @param schedules
+ * @param color
+ * @returns The newly created provider.
+ */
 export const createProvider = (
   id: number,
   schedules: Schedule[],
@@ -23,13 +37,16 @@ export const createProvider = (
   color,
 });
 
-export const updateProviderSchedules = ({
-  provider,
-  schedules,
-}: {
-  provider: Provider;
-  schedules: Schedule[];
-}): Provider => ({ ...provider, schedules });
+/**
+ * Adds schedule to existing provider
+ * @param provider: Provider to add schedule to.
+ * @param schedule: The schedule to add,
+ * @returns Updated provider with new schedule added.
+ */
+export const addSchedule = (
+  provider: Provider,
+  schedule: Schedule
+): Provider => ({ ...provider, schedules: [...provider.schedules, schedule] });
 
 /**
  * Sorts schedules by date.
